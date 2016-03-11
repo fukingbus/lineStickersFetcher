@@ -16,4 +16,5 @@ var getLinks = async (function(){
 	 }));
 	 return (JSON.parse(res)).link;
 });
+
 main();
