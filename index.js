@@ -2,13 +2,14 @@ const request = require('request-promise');
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
 const fs = require('fs');
-const pillow = require('sleep');
+//const pillow = require('sleep');
+const imgFactory = require('lwip');
 
 var stickerOrigin;
 var main = async (function(){
 	console.log('Fetching origin sticker links...');
 	stickerOrigin = await (getLinks());
-	scheduler();
+	await(scheduler());
 });
 var getLinks = async (function(){
   stickerId = '1033821';
@@ -27,7 +28,7 @@ var scheduler = async(function(){
 	for(var i=0,len=stickerOrigin.length;i<len;i++){
 		url = stickerOrigin[i];
 		filename = url.replace(/^.*[\\\/]/, '');
-		console.log('downloading '+filename + ' ('+(i+1)+'/'+len+' , '+((i/len)*100) +'%)');
+		console.log('Downloading '+filename + ' ('+(i+1)+'/'+len+' , '+((i/len)*100) +'%)');
 		try{
 			res = await(download(url,filename));
 		}
@@ -62,8 +63,26 @@ var saveImg = (function(filename,data){
 			  	console.log( err);
 			  	return false;
 			 }
-			 console.log(filename + ' saved!');
+			 console.log('> '+filename + ' saved!');
+			 compress(filename);
 			 return true;
 		}));
+});
+var compress = async(function(filename){
+		try{
+			await (imgFactory.open(filename, function(err, image){
+				  image.batch()
+				  .scale(0.75)
+				  .resize(512, 512)       
+				  .writeFile('512_'+filename,'png', function(err){
+				    	if(err)
+				    		console.log(err);
+				    	console.log('> '+filename+' Compressed');
+				    });
+				}));
+		}
+		catch(e){
+			console.log(e);
+		}
 });
 main();
