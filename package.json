@@ -1,0 +1,26 @@
+{
+  "name": "line-stickers-fetcher",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "asyncawait": "^1.0.3",
+    "bluebird": "^3.3.4",
+    "kneden": "^1.0.2",
+    "request-promise": "^2.0.1",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fukingbus/lineStickersFetcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fukingbus/lineStickersFetcher/issues"
+  },
+  "homepage": "https://github.com/fukingbus/lineStickersFetcher#readme"
+}
