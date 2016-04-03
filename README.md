@@ -2,7 +2,9 @@
 to fetch stickers &amp; convert to 512*512 PNG
 
 > npm install request-promise
+> 
 > npm install asyncawait
+> 
 > npm install lwip
 
 change **stickerId** to line sticker id
